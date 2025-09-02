@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Systems Interview Preparation</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav__brand">
+                <h1>Epic Interview Prep</h1>
+            </div>
+            <div class="nav__menu">
+                <button class="btn btn--outline nav__toggle" id="roleToggle">Switch Role</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Role Selection Modal -->
+    <div class="modal hidden" id="roleModal">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2>Select Your Role</h2>
+                <button class="modal__close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div class="role-cards">
+                    <div class="card role-card" data-role="software-engineer">
+                        <div class="card__body">
+                            <h3>Software Engineer</h3>
+                            <p>Coding assessments, system design, and technical interviews</p>
+                            <div class="role-highlights">
+                                <span class="status status--info">LeetCode Practice</span>
+                                <span class="status status--info">System Design</span>
+                                <span class="status status--info">Coding Assessments</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card role-card" data-role="project-manager">
+                        <div class="card__body">
+                            <h3>Project Manager</h3>
+                            <p>Case studies, behavioral interviews, and presentation skills</p>
+                            <div class="role-highlights">
+                                <span class="status status--warning">Case Studies</span>
+                                <span class="status status--warning">Behavioral Prep</span>
+                                <span class="status status--warning">Presentations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="partner-mode">
+                    <button class="btn btn--secondary" id="partnerMode">View Both Tracks</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Dashboard -->
+            <section class="dashboard" id="dashboard">
+                <div class="dashboard__header">
+                    <div class="dashboard__title">
+                        <h1 id="welcomeTitle">Welcome to Your Epic Journey</h1>
+                        <p id="currentPhase" class="dashboard__subtitle">Foundation Building Phase</p>
+                    </div>
+                    <div class="dashboard__stats">
+                        <div class="stat-card">
+                            <h3 id="daysUntilCast">28</h3>
+                            <p>Days Until Cast Removal</p>
+                        </div>
+                        <div class="stat-card">
+                            <h3 id="daysUntilApplication">112</h3>
+                            <p>Days Until Application</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase Progress -->
+                <div class="phase-progress">
+                    <h2>Current Phase Progress</h2>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="phaseProgress" style="width: 0%"></div>
+                        </div>
+                        <span id="progressText">0% Complete</span>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2>Quick Actions</h2>
+                    <div class="action-grid">
+                        <button class="action-card" data-section="timeline">
+                            <h3>View Timeline</h3>
+                            <p>See your full preparation roadmap</p>
+                        </button>
+                        <button class="action-card" data-section="daily">
+                            <h3>Today's Plan</h3>
+                            <p>Check your daily study tasks</p>
+                        </button>
+                        <button class="action-card" data-section="practice">
+                            <h3>Practice</h3>
+                            <p>Work on assessments and coding</p>
+                        </button>
+                        <button class="action-card" data-section="resources">
+                            <h3>Resources</h3>
+                            <p>Access study materials</p>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Timeline -->
+            <section class="timeline-section hidden" id="timeline">
+                <div class="section-header">
+                    <h1>Preparation Timeline</h1>
+                    <button class="btn btn--outline" data-section="dashboard">Back to Dashboard</button>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item active" data-phase="1">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Phase 1: Foundation Building</h3>
+                                    <p class="timeline-dates">Sep 15 - Nov 10, 2025 • 8 weeks</p>
+                                    <p>Skill building while hand heals, low-pressure learning</p>
+                                    <div class="timeline-details" id="phase1Details"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-phase="2">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Phase 2: Intensive Preparation</h3>
+                                    <p class="timeline-dates">Nov 10 - Dec 22, 2025 • 6 weeks</p>
+                                    <p>Mock interviews, assessment practice, full preparation</p>
+                                    <div class="timeline-details" id="phase2Details"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item" data-phase="3">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="card">
+                                <div class="card__body">
+                                    <h3>Phase 3: Application & Interview</h3>
+                                    <p class="timeline-dates">Dec 22+ 2025 • 2-8 weeks</p>
+                                    <p>Active application and interview period</p>
+                                    <div class="timeline-details" id="phase3Details"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Milestones -->
+                <div class="milestones">
+                    <h2>Key Milestones</h2>
+                    <div class="milestone-grid">
+                        <div class="milestone-card">
+                            <div class="milestone-date">Sep 29, 2025</div>
+                            <h3>Cast Removal</h3>
+                            <p>Full typing ability restored</p>
+                        </div>
+                        <div class="milestone-card">
+                            <div class="milestone-date">Nov 10, 2025</div>
+                            <h3>Phase 2 Begins</h3>
+                            <p>Intensive preparation starts</p>
+                        </div>
+                        <div class="milestone-card">
+                            <div class="milestone-date">Dec 22, 2025</div>
+                            <h3>Application Target</h3>
+                            <p>Ready to apply to Epic</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Daily Planner -->
+            <section class="daily-section hidden" id="daily">
+                <div class="section-header">
+                    <h1>Today's Study Plan</h1>
+                    <button class="btn btn--outline" data-section="dashboard">Back to Dashboard</button>
+                </div>
+
+                <div class="daily-content">
+                    <div class="study-timer">
+                        <h2>Study Timer</h2>
+                        <div class="timer-display">
+                            <span id="timerMinutes">00</span>:<span id="timerSeconds">00</span>
+                        </div>
+                        <div class="timer-controls">
+                            <button class="btn btn--primary" id="startTimer">Start</button>
+                            <button class="btn btn--secondary" id="pauseTimer">Pause</button>
+                            <button class="btn btn--outline" id="resetTimer">Reset</button>
+                        </div>
+                        <div class="timer-presets">
+                            <button class="preset-btn" data-minutes="25">25 min</button>
+                            <button class="preset-btn" data-minutes="45">45 min</button>
+                            <button class="preset-btn" data-minutes="90">90 min</button>
+                        </div>
+                    </div>
+
+                    <div class="today-tasks">
+                        <h2>Today's Tasks</h2>
+                        <div class="task-list" id="todayTasks">
+                            <!-- Tasks will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="progress-chart">
+                        <h2>Weekly Progress</h2>
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="weeklyChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Practice Area -->
+            <section class="practice-section hidden" id="practice">
+                <div class="section-header">
+                    <h1>Practice Area</h1>
+                    <button class="btn btn--outline" data-section="dashboard">Back to Dashboard</button>
+                </div>
+
+                <div class="practice-content" id="practiceContent">
+                    <!-- Content will be populated based on role -->
+                </div>
+            </section>
+
+            <!-- Resources -->
+            <section class="resources-section hidden" id="resources">
+                <div class="section-header">
+                    <h1>Study Resources</h1>
+                    <button class="btn btn--outline" data-section="dashboard">Back to Dashboard</button>
+                </div>
+
+                <div class="resources-grid">
+                    <div class="resource-category">
+                        <h2>Technical Resources</h2>
+                        <div class="resource-list" id="technicalResources"></div>
+                    </div>
+                    <div class="resource-category">
+                        <h2>Epic-Specific</h2>
+                        <div class="resource-list" id="epicResources"></div>
+                    </div>
+                    <div class="resource-category">
+                        <h2>Interview Prep</h2>
+                        <div class="resource-list" id="behavioralResources"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Reports -->
+            <section class="progress-section hidden" id="progress">
+                <div class="section-header">
+                    <h1>Progress Reports</h1>
+                    <button class="btn btn--outline" data-section="dashboard">Back to Dashboard</button>
+                </div>
+
+                <div class="progress-content">
+                    <div class="progress-overview">
+                        <div class="chart-container" style="position: relative; height: 400px;">
+                            <canvas id="overallProgressChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="achievements">
+                        <h2>Achievements</h2>
+                        <div class="achievement-grid" id="achievements">
+                            <!-- Achievements will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
